@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Asincronía en JavaScript</h1>
+    <script>
+      /*  console.log("Ejecutando antes de setTimeout");
+      let temporizador = setTimeout(() => {
+        console.log("Ejecutando un setTimeout, esto se ejecuta una solo vez");
+      }, 3000);
+      setInterval(() => {
+        console.log(new Date().toLocaleTimeString());
+      }, 3000);
+      //cancela setTimeout
+      clearTimeout(temporizador);
+      clearInterval(temporizador);
+      */
+      /*
+      Procesamiento Single thread y multi thread.
+      Operaciones de CPU y operariones de I/O.
+      Operaciones concurrentes y paralelas.
+      Operaciones Bloqueantes y No Bloqueantes.
+      Operaciones Sincronas y Asincronas
+      */
+      // ejecutar este codigo en la pagina: latentflip.com  para ver como funciona el stack
+      //Codigo sincrono bloquante
+      /* (() => {
+        console.log("codigo sincrono");
+        console.log("inicio");
+        function dos() {
+          console.log("dos");
+        }
+        function uno() {
+          console.log("uno");
+          dos();
+          console.log("tres");
+        }
+        uno();
+        console.log("fin");
+      })();
+      //Codigo asincrono no bloqueante
+      (() => {
+        console.log("Codigo asincrono");
+        console.log("inicio");
+        function dos() {
+          setTimeout(function () {
+            console.log("dos");
+          }, 1000);
+        }
+        function uno() {
+          setTimeout(function () {
+            console.log("uno");
+          }, 0);
+          dos();
+          console.log("tres");
+        }
+        uno();
+        console.log("fin");
+      })(); */
+
+      //CALLBACKS - funcion que se va a ejecutar despues que otra lo haga
+      /* function cuadradoCallback(value, callback) {
+        setTimeout(() => {
+          callback(value, value * value);
+        }, 0 | (Math.random() * 1000));
+      }
+      cuadradoCallback(2, (value, result) => {
+        console.log("inicia callback");
+        console.log(`callback: ${value}, ${result}`);
+        console.log(`callback: 😂😂😂`);
+      }); */
+      /* function prueba(callback) {
+        setTimeout(() => {
+          console.log("hola en el settimeout");
+        }, 0);
+        callback();
+        console.log("hola antes del callback");
+      }
+      prueba(() => {
+        console.log("hola despues del callback");
+      }); */
+
+      //PROMISE (PROMESA)
+      /* function cuadradoPromise(value) {
+        if (typeof value !== "number")
+          return Promise.reject(
+            `Error, el valor ${value} ingresado no es un numero`
+          );
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve({
+              value,
+              result: value * value,
+            });
+          }, 0 | (Math.random() * 1000));
+        });
+      }
+      cuadradoPromise(0)
+        .then((obj) => {
+          // console.log(obj);
+          console.log("inicio Promise");
+          console.log(`Promise: ${obj.value}, ${obj.result} `);
+          return cuadradoPromise("wilson");
+        })
+        .then((obj) => {
+          console.log(`Promise: ${obj.value}, ${obj.result} `);
+          return cuadradoPromise(2);
+        })
+        .then((obj) => {
+          console.log(`Promise: ${obj.value}, ${obj.result} `);
+        })
+        .catch((err) => console.error(err)); */
+
+      // Async - Await
+      function cuadradoPromise(value) {
+        if (typeof value !== "number")
+          return Promise.reject(
+            `Error, el valor ${value} ingresado no es un numero`
+          );
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve({
+              value,
+              result: value * value,
+            });
+          }, 0 | (Math.random() * 1000));
+        });
+      }
+
+      async function funcionAsincronaDeclarada() {
+        try {
+          console.log("Inicio Async function");
+          let obj = await cuadradoPromise(0);
+          console.log(`Async function: ${obj.value}, ${obj.result}`);
+          console.log(`enmedio de async`);
+          obj = await cuadradoPromise(1);
+          console.log(`Async function: ${obj.value}, ${obj.result}`);
+          obj = await cuadradoPromise("errorwilson");
+          console.log(`Async function: ${obj.value}, ${obj.result}`);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      funcionAsincronaDeclarada();
+      const funcionAsincronaExpresada = async () => {
+        try {
+          console.log("Inicio Async function en expr.");
+          let obj = await cuadradoPromise(2);
+          console.log(`Async function: ${obj.value}, ${obj.result}`);
+          obj = await cuadradoPromise(3);
+          console.log(`Async function: ${obj.value}, ${obj.result}`);
+          obj = await cuadradoPromise("4");
+          console.log(`Async function: ${obj.value}, ${obj.result}`);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      funcionAsincronaExpresada();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      1) Programa una función que cuente el número de caracteres de una cadena
+      de texto, pe. miFuncion("Hola Mundo") devolverá 10.
+    </p>
+    <p>
+      2) Programa una función que te devuelva el texto recortado según el número
+      de caracteres indicados, pe. miFuncion("Hola Mundo", 4) devolverá "Hola".
+    </p>
+    <p>
+      3) Programa una función que dada una String te devuelva un Array de textos
+      separados por cierto caracter, pe. miFuncion('hola que tal', ' ')
+      devolverá ['hola', 'que', 'tal'].
+    </p>
+    <p>
+      4) Programa una función que repita un texto X veces, pe. miFuncion('Hola
+      Mundo', 3) devolverá Hola Mundo Hola Mundo Hola Mundo.
+    </p>
+    <script>
+      /* function contarNumerosDeCaracteresTexto(cadena) {
+        console.log("1.-");
+        if (typeof cadena === "string") {
+          console.log(
+            "El numero de caracteres de la cadena de texto es:",
+            cadena.length
+          );
+        } else {
+          console.log("No es cadena de texto");
+        }
+      } */
+      const contarNumerosDeCaracteresTexto = (cadena = "") =>
+        !cadena
+          ? console.warn("No ingresaste ninguna cadena")
+          : console.info(
+              `La cadena "${cadena} tiene ${cadena.length} caracteres"`
+            );
+      contarNumerosDeCaracteresTexto("cadena");
+      function cortarCadenaTexto(cadena, numeroCaracteres) {
+        console.log("2.-");
+        if (
+          typeof cadena === "string" &&
+          typeof numeroCaracteres === "number"
+        ) {
+          console.log(
+            "El texto recortado de la cadena de texto es:",
+            cadena.substring(0, numeroCaracteres)
+          );
+        } else {
+          console.log("Error en los datos ingresados");
+        }
+      }
+      cortarCadenaTexto("cadena", 3);
+      function devolverArray(cadena, separador) {
+        console.log("3.-");
+        if (typeof cadena === "string" && typeof separador === "string") {
+          console.log(
+            "El array de la cadena de texto es:",
+            cadena.split(separador)
+          );
+        } else {
+          console.log("Error en los datos ingresados");
+        }
+      }
+      devolverArray("hola que tal", " ");
+      function repetirTexto(cadena, cantidad) {
+        console.log("4.-");
+        if (typeof cadena === "string" && typeof cantidad === "number") {
+          for (let index = 0; index <= cantidad; index++) {
+            console.log(cadena);
+          }
+        } else {
+          console.log("Error en los datos ingresados");
+        }
+      }
+      repetirTexto("cadena", 6);
+    </script>
+  </body>
+</html>

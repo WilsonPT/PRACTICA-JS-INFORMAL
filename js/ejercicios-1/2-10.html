@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      5) Programa una función que invierta las palabras de una cadena de texto,
+      pe. miFuncion("Hola Mundo") devolverá "odnuM aloH".
+    </p>
+    <p>
+      6) Programa una función para contar el número de veces que se repite una
+      palabra en un texto largo, pe. miFuncion("hola mundo adios mundo",
+      "mundo") devolverá 2.
+    </p>
+    <p>
+      7) Programa una función que valide si una palabra o frase dada, es un
+      palíndromo (que se lee igual en un sentido que en otro), pe.
+      mifuncion("Salas") devolverá true.
+    </p>
+    <p>
+      8) Programa una función que elimine cierto patrón de caracteres de un
+      texto dado, pe. miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz")
+      devolverá "1, 2, 3, 4 y 5.
+    </p>
+    <script>
+      const invertirCadena = (cadena = "") =>
+        !(typeof cadena === "string")
+          ? console.log("El valor ingresado no es una cadena de caracteres")
+          : !cadena
+          ? console.log("Cadena de caracteres vacia")
+          : console.log(cadena.split("").reverse().join(""));
+      invertirCadena("hola mundo");
+      const textoEnCadena = (cadena = "", texto = "") => {
+        if (!cadena) return console.log("No ingresaste el texto largo");
+        if (!texto) return console.log("No ingresaste la palabra a evaluar");
+        let i = 0,
+          contador = 0;
+        while (i !== -1) {
+          i = cadena.indexOf(texto, i);
+          if (i !== -1) {
+            i++;
+            contador++;
+          }
+        }
+        return console.info(`La palabra ${texto} se repite ${contador} veces`);
+      };
+      textoEnCadena(
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur officiis incidunt sunt quisquam vel soluta porro corporis, assumenda repudiandae rerum sunt u sunt praesentium quo hic adipisci aperiam fugiat consequuntur voluptate!",
+        "sunt"
+      );
+      const contarRepeticiones = (cadena = "", palabra = "") =>
+        !(typeof cadena === "string" && typeof palabra === "string")
+          ? console.log("El valor ingresado no es una cadena de caracteres")
+          : !cadena
+          ? console.log("Cadena de caracteres vacia")
+          : !palabra
+          ? console.log("Ingrese palabra a buscar")
+          : console.log((cadena.match(new RegExp(palabra, "ig")) || []).length);
+      contarRepeticiones(
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur officiis incidunt sunt quisquam vel soluta porro corporis, assumenda repudiandae rerum sunt u sunt praesentium quo hic adipisci aperiam fugiat consequuntur voluptate!",
+        "sunt"
+      );
+      function palindromo(params) {
+        let auxiliar = params.split("").reverse().join("");
+        if (params.toUpperCase() === auxiliar.toUpperCase()) {
+          return console.log("palabra palindromo");
+        }
+        console.log("no es una palabra palindromo");
+      }
+      palindromo("Salas");
+      function eliminarPatronCaracter(cadena, patron) {
+        let regxp = new RegExp(patron, "ig");
+        let resp = cadena.replace(regxp, "");
+        console.log(resp);
+        "dlskdsl".replace();
+      }
+      eliminarPatronCaracter("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz");
+    </script>
+  </body>
+</html>

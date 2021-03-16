@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>NUEVOS TIPOS DE DATOS</h1>
+    <script>
+      //Symbol - una vez que se crea un symbol su valor se va a mantener privado, y para uso interno generalmente los symbols suelen agregarse como caracteristicas de objetos, como una propiedad privada. Nos permiten crear identificadores unicos, idendtifacdores de referencia.
+      //crear de manera global un symbol
+      /* let id = "hola";
+              let id2 = "hola";
+              console.log(id === id2); //true */
+      /* let id = Symbol();
+              let id2 = Symbol();
+              console.log(id, id2, id === id2); //false
+              // buena practica
+              // Agregar etiqueta
+              const NOMBRE = Symbol("nombre");
+              const SALUDAR = Symbol("saludar");
+              const persona = {
+                [NOMBRE]: "Wilson",
+                [SALUDAR]() {
+                  console.log("hola papu");
+                },
+                edad: 27,
+              };
+              console.log(persona.NOMBRE); // undefined
+              console.log(persona); // {Symbol(): "Wilson"} si no tuviera la etiqueta
+              persona.NOMBRE = "Isaias";
+              console.log(persona); // {NOMBRE: "Isaias", Symbol(): "Wilson"}
+              // utilizar propiedad definida como simbolo
+              console.log(persona.NOMBRE); // Isaias
+              console.log(persona[NOMBRE]); // Wilson
+              // persona.SALUDAR(); //error
+              persona[SALUDAR](); // hola papu
+              for (const propiedad in persona) {
+                console.log(propiedad);
+                console.log(persona[propiedad]);
+              }
+              // obtener propiedades "privadas"
+              console.log(Object.getOwnPropertySymbols(persona)); */
+
+      // Set - conjunto de datos unicos (primitivos)
+      /*  const set = new Set([
+                1,
+                2,
+                3,
+                3,
+                true,
+                false,
+                true,
+                {},
+                {},
+                "hola",
+                "HOLA",
+              ]);
+              console.log(set);
+              console.log(set.size);
+              const set2 = new Set();
+              set2.add(1);
+              set2.add(1);
+              set2.add(3);
+              set2.add(true);
+              set2.add("wilson");
+              console.log(set2);
+              for (const iterator of set) {
+                console.log(iterator);
+              }
+              for (const iterator of set2) {
+                console.log(iterator);
+              }
+              set2.forEach((item) => console.log(item));
+              Array.from(set2).forEach((item, index) =>
+                console.log(`Posicion: ${index} valor: ${item}`)
+              );
+              set.delete("HOLA");
+              console.log(set);
+              console.log(set.has("HOLA"));
+              console.log(set.has("hola"));
+              set.clear();
+              console.log(set); */
+
+      // Maps - objetos que nos sirven para almacenar conjunto de valores asociados a manera de objeto. Devuelve un objeto que contiene propiedades a manera de arrays [key, value]. Las llaves pueden no ser cadena de textos
+      /*  let mapa = new Map();
+              mapa.set("nombre", "Wilson");
+              mapa.set("edad", 27);
+              console.log(mapa);
+              console.log(mapa.size);
+              console.log(mapa.has("edad"));
+              console.log(mapa.has("correo"));
+              console.log(mapa.get("nombre"));
+              mapa.set("nombre", "Isaias");
+              console.log(mapa.get("nombre"));
+              mapa.delete("nombre");
+              console.log(mapa);
+              mapa.set("aka", "the best");
+              mapa.set(1, "uno");
+              mapa.set(true, "verdadero");
+              console.log(mapa);
+              for (const [key, value] of mapa) {
+                console.log(`LLave: ${key} Valor: ${value}`);
+              }
+             const mapa2 = new Map([
+               ["Nombre", "El animal"],
+               [1, "The best"],
+             ]);
+             console.log(mapa2);
+             const llavesMapa = [...mapa2.keys()];
+             const valuesMapa = [...mapa2.values()];
+             console.log(llavesMapa);
+             console.log(valuesMapa);*/
+
+      //WeakSets - solo pueden almacenar referencias de tipo debiles, es decir, deben ser de tipo objeto. No son iterables, no se puede utilizar clear(), es decir, no se puede eliminar todos los elementos de una vez. No tiene size. Solo se puede ir aggregando elementos de uno a uno. Solo cuenta con los metodos add, delete y has.
+      /* const ws = new WeakSet();
+             // ws.add(1);  // Error
+             let valor1 = { valor1: 1 };
+             let valor2 = { valor2: 2 };
+             let valor3 = { valor3: 3 };
+             ws.add(valor1);
+             ws.add(valor2);
+             ws.add(valor3);
+             console.log(ws);
+             console.log(ws.has(valor1));
+             ws.delete(valor2);
+             console.log(ws);
+            */
+      //WeakMaps - solo pueden almacenar referencias de tipo debiles, es decir, las llaves deben ser de tipo objeto. No son iterables, no se puede utilizar clear(), es decir, no se puede eliminar todos los elementos de una vez. No tiene size. Solo cuenta con los metodos set, get, delete y has.
+      /* const wm = new WeakMap();
+             // wm.add(1);  // Error
+             let valor1 = {};
+             let valor2 = {};
+             let valor3 = {};
+             wm.set(valor1, "uno");
+             wm.set(valor2, "dos");
+             wm.set(valor3, "tres");
+             console.log(wm);
+             console.log(wm.has(valor1));
+             wm.delete(valor2);
+             console.log(wm);
+             setInterval(() => console.log(wm), 1000);
+             setTimeout(() => {
+               valor1 = null;
+               valor2 = null;
+               valor3 = null;
+             }, 5000); */
+
+      //GENERATORS - vuelve iterable una funcion
+      /*  function* iterable() {
+               yield "hola";
+               console.log("Hola consola");
+               yield "hola 2";
+               console.log("seguimos con mas instrucciones");
+               yield "hola 3";
+               yield "hola 4";
+             }
+             let iterador = iterable(); */
+      /* console.log(iterador.next());
+             console.log(iterador.next());
+             console.log(iterador.next());
+             console.log(iterador.next());
+             console.log(iterador.next()); */
+
+      /* for (const item of iterador) {
+               console.log(item);
+             }
+             const arr = [...iterable()];
+             console.log(arr);
+
+             function cuadrado(valor) {
+               setTimeout(() => {
+                 console.log({ valor, resultado: valor * valor });
+               }, Math.random() * 1000);
+               return {
+                 valor,
+                 resultado: valor * valor,
+               };
+             }
+
+             function* generador() {
+               console.log("inicia generator");
+               yield cuadrado(0);
+               yield cuadrado(1);
+               yield cuadrado(2);
+               yield cuadrado(3);
+               yield cuadrado(4);
+               console.log("termina generator");
+             }
+             for (const iterator of generador()) {
+               console.log(iterator);
+             } */
+
+      //Proxies
+      /*  const persona = {
+              nombre: "",
+              apellido: "",
+              edad: 0,
+            };
+            const manejador = {
+              set(obj, prop, valor) {
+                if (Object.keys(obj).indexOf(prop) === -1) {
+                  return console.error(
+                    `La propiedad ${prop} no existe en el objeto persona`
+                  );
+                }
+                if (
+                  (prop === "nombre" || prop === "apellido") &&
+                  !/^([A-Za-zÑñÁáÉéÍíÓóÚú])+$/g.test(valor)
+                ) {
+                  return console.error(
+                    `La propiedad ${prop} solo acepta letras y espacios en blanco`
+                  );
+                }
+                obj[prop] = valor;
+              },
+            };
+            const wilson = new Proxy(persona, manejador);
+            wilson.nombre = "wilso  n";
+            wilson.apellido = "crack";
+            wilson.edad = 27;
+            console.log(wilson);
+            wilson.twitter = "@algo";
+            console.log(wilson);
+            console.log(persona); */
+
+      // Propiedades dinamicos de los objetos
+      /* const objUsuarios = {};
+      const usuarios = ["Jon", "Irma", "Miguel", "Karla", "Cachorro"];
+      usuarios.forEach(
+        (usuario, index) => (objUsuarios[`id_${index}`] = usuario)
+      ); */
+      /* let aleatorio = Math.round(Math.random() * 100 + 5);
+      const objUsuarios = {
+        [`id_${aleatorio}`]: "valor aleatorio",
+      };
+      const usuarios = [
+        "Jodsdsdsdn",
+        "Irdfsdfma",
+        "Migdsfafewwuel",
+        "Jonweewe",
+        "Irmvccca",
+        "Migwwwuel",
+        "Jonwwww",
+        "Irm3333a",
+        "Mig4444uel",
+        "Jon222",
+        "Irm11223a",
+        "Mig3432uel",
+        "Jo2342n",
+        "Irm2234a",
+        "Mig44uel",
+        "Jo542n",
+        "Irmrv23a",
+        "Mig323vruel",
+        "Jadsd",
+        "Irdfsdma",
+        "Msdsiguel",
+        "Jon",
+        "Irma",
+        "Miguel",
+        "Karla",
+        "Cachorro",
+      ];
+      usuarios.forEach(
+        (usuario, index) => (objUsuarios[`id_${index}`] = usuario)
+      );
+      console.log(objUsuarios); */
+
+      /* SCOPE EN JAVASCRIPT:
+          - SCOPE GLOBAL
+          - SCOPE LOCAL: SCOPE DE FUNCION Y SCOPE DE BLOQUE DE CODIGO
+      */
+      /*  var fruta = "manzana";
+      function comer() {
+        var otraFruta = "banana";
+        if (true) {
+          var unaFrutaMas = "pera";
+        }
+        console.log("comiendo " + otraFruta);
+        console.log("comiendo " + unaFrutaMas);
+      } */
+      // console.log(otraFruta); //Uncaught ReferenceError: otraFruta is not defined
+      /*       comer();
+       */ // THIS
+      /* console.log(this);
+      console.log(window);
+      function name() {
+        console.log(this);
+      }
+      const obj = () => {
+        console.log(this === window);
+      };
+      name();
+      obj();
+      console.log(this === window);
+      nombre = "Contexto Global";
+      console.log(this.nombre);
+      function imprimir() {
+        console.log(this.nombre);
+      }
+      const objeto = {
+        nombre: "Contexto Objeto",
+        imprimir() {
+          console.log(this.nombre);
+        },
+      };
+      objeto.imprimir();
+      {
+        //bloque
+      }
+      const objeto2 = {
+        nombre: "Contexto Objeto 2",
+        imprimir,
+      };
+      objeto2.imprimir();
+      const objeto3 = {
+        nombre: "Contexto Objeto 3",
+        // arrow function herredan el contexto en el que han sido creadas - no crean scope
+        imprimir: () => {
+          console.log(this.nombre);
+        },
+      };
+      objeto3.imprimir();
+      // funcion constructora crea su propio scope
+      function Persona(nombre) {
+        this.nombre = nombre; */
+      /* this.saludar = () => {
+          console.log(this.nombre);
+        }; */
+      //return console.log(this.nombre);
+      //function crea un nuevo contexto pero ese contexto no tiene nombre y toma el valor global
+      /* return function () {
+          console.log(this.nombre);
+        }; */
+      // arrow function no crean scope sino que heredan (Persona)
+      /* return () => console.log(this.nombre);
+       */
+      /*  }
+      let wilson = new Persona("Wilson");
+      // wilson.saludar(); // retorna wilson
+      wilson(); */
+
+      //call() - apply() - bind()
+      /* console.log(this);
+      this.lugar = "Contexto global";
+      function saludar(saludo, aQuien) {
+        console.log(`${saludo} ${aQuien} desde el ${this.lugar}`);
+      }
+      saludar("hola", "papu");
+      const obj = {
+        lugar: "Contexto Objeto",
+      };
+      function saludar2(saludo, aQuien) {
+        lugar = "contexto de la funcion saludar2";
+        console.log(`${saludo} ${aQuien} desde el ${this.lugar}`);
+      }
+      saludar.call(obj, "Que crack", "Wilson");
+      saludar.apply(obj, ["Que onda", "Isaias"]);
+      saludar2("Que crack", "the best");
+      saludar.call(null, "null es el contexto antecesor", "crack");
+
+      const persona = {
+        nombre: "Wilson",
+        saludar: function () {
+          console.log(`Hola ${this.nombre}`);
+        },
+      };
+
+      persona.saludar();
+      const otraPersona = {
+        // saludar: persona.saludar, //undefined
+        // enlazar el contexto
+        saludar: persona.saludar.bind(persona),
+      }; 
+      otraPersona.saludar(); */
+
+      //JSON - javascript object notation - formato ligero de intercambio de datos - no es exclusivo de js
+      const json = {
+        cadena: "Wilson",
+        numero: 27,
+        booleano: true,
+        arreglo: ["correr", "programar", "cocinar"],
+        objeto: {
+          email: "wilson@hotmail.com",
+          twitter: "@galdaa",
+        },
+        nulo: null,
+      };
+      console.log(json);
+      console.log(JSON);
+      console.log("algo");
+      console.log("{}");
+      console.log(JSON.parse("{}"));
+      console.log(JSON.parse("[1, 2, 3]"));
+      console.log(JSON.parse("true"));
+      console.log(JSON.parse("27"));
+      console.log(JSON.parse("null"));
+      // console.log(JSON.parse("Hola mundo"));
+      // console.log(JSON.parse("undefined"));
+      console.log(JSON.stringify({ x: 5, y: 6 }));
+      // expected output: "{"x":5,"y":6}"
+      console.log(
+        JSON.stringify([new Number(3), new String("false"), new Boolean(false)])
+      );
+      // expected output: "[3,"false",false]"
+      console.log(
+        JSON.stringify({ x: [10, undefined, function () {}, Symbol("")] })
+      );
+      // expected output: "{"x":[10,null,null,null]}"
+      console.log(JSON.stringify(new Date(2006, 0, 2, 15, 4, 5)));
+      // expected output: ""2006-01-02T15:04:05.000Z""
+      console.log(JSON.stringify(json));
+      console.log(
+        JSON.parse(
+          '{"cadena":"Wilson","numero":27,"booleano":true,"arreglo":["correr","programar","cocinar"],"objeto":{"email":"wilson@hotmail.com","twitter":"@galdaa"},"nulo":null}'
+        )
+      );
+    </script>
+  </body>
+</html>

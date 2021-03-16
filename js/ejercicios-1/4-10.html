@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+         12) Programa una función que determine si un número es primo (aquel que solo es divisible por sí mismo y 1) o no, pe. miFuncion(7) devolverá true.
+         */
+      const primo = (numero) => {
+        if (numero === 0 || numero === 1 || numero === 4) return false;
+        let divisible = false;
+        for (let index = 2; index < numero; index++) {
+          if ((numero % index )=== 0) {
+            divisible = true;
+            break;
+          }
+        }
+        return divisible
+          ? console.log("No es primo")
+          : console.log("si es primo");
+      };
+      primo(13);
+      primo(200);
+      /*
+        13) Programa una función que determine si un número es par o impar, pe. miFuncion(29) devolverá Impar.
+        */
+      const parImpar = (numero) => {
+        if (numero === 0) return console.log("0 es neuntro");
+        if (numero % 2 === 0) return console.log("par");
+        return console.log("impar");
+      };
+      parImpar(5343);
+      /*
+       14) Programa una función para convertir grados Celsius a Fahrenheit y viceversa, pe. miFuncion(0,"C") devolverá 32°F.
+       */
+      const convertirGrados = (grados, tipo) => {
+        if (
+          tipo.toString().toUpperCase() !== "C" &&
+          tipo.toString().toUpperCase() !== "F"
+        ) {
+          return console.log("ingrese una conversion valida");
+        }
+        if (tipo.toUpperCase() !== "C") return console.log(grados * 1.8 + 32);
+        return console.log((grados - 32) / 1.8);
+      };
+      convertirGrados(4, "f");
+    </script>
+  </body>
+</html>

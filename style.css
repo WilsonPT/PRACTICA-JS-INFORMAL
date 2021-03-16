@@ -1,0 +1,68 @@
+* {
+  /* 
+    Esto permite que si se define un elemento con un ancho de 100 pixeles. Esos 100 pixeles incluíran cualquier borde o relleno que se añadan, y la caja de contenido se encogerá para absorber ese ancho extra. Esto típicamente hace mucho más fácil dimensionar elementos.
+  */
+  box-sizing: border-box;
+}
+.mainCont {
+  font-weight: bold;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 15px;
+  box-shadow: #cccccc 2px 4px 10px 0px;
+}
+.desplegableTitle {
+  /* Utilizo flex en el div para facilitar el centrado  (Recursos)*/
+  display: flex;
+  justify-content: center; /* centro la etiqueta <a> */
+}
+.desplegableTitle a {
+  background-color: #00857a;
+  color: #fff;
+  box-shadow: #aaaaaa 2px 4px 10px 0px;
+  border-radius: 20px;
+  padding: 15px 28px;
+  font-size: 22px;
+}
+.desplegableTitle a:hover {
+  /* efecto que cambia el color de las etiquetas <a> al pasar sobre el */
+  background-color: #095c55;
+  color: #fff;
+}
+.desplegable {
+  overflow: hidden;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.desplegable a {
+  flex: 100%; /* Para movil */
+  float: left;
+  text-align: center;
+  text-decoration: none;
+  background-color: #ddd;
+  color: black;
+  font-size: 18px;
+  border-radius: 20px;
+  padding: 15px 28px;
+  margin: 4px;
+}
+.desplegable a:hover {
+  background-color: rgb(150, 147, 147);
+  color: #fff;
+}
+
+/* Medias query para cambiar los tamaños de las etiquetas según ancho de la pantalla */
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .desplegable a {
+    flex: 33.33%;
+  }
+}
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .desplegable a {
+    flex: 22.5%;
+  }
+}

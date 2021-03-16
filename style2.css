@@ -1,0 +1,35 @@
+body {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "hd"
+    "mn"
+    "ft";
+}
+
+header {
+  grid-area: hd;
+}
+main {
+  grid-area: mn;
+}
+.container-image {
+    position: relative;
+    height: 750px;
+    width: 100%;
+}
+.container-image img#img1 {
+    position: absolute;
+    z-index: 121;
+}
+.container-image img#img2 {
+  position: absolute;
+  z-index: 137;
+}
+.container-image img#img3 {
+  position: absolute;
+  z-index: 140;
+}
+footer {
+  grid-area: ft;
+}

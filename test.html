@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // MEDIA ARITMETICA
+      let suma = 0;
+      let media = 0;
+      let contador = 0;
+      let entrada = null;
+      do {
+        entrada = prompt(
+          "Introduce un número, pulse Cancelar si no quiere seguir: "
+        );
+        // Salir del ciclo en el caso de que se de click en Cancelar
+        if (entrada === null) break;
+        // Convertir a Number
+        let numero = parseFloat(entrada);
+        // Puede ver en consola el valor de numero
+        console.log(numero);
+        // True si la conversión no fue posible
+        if (isNaN(numero)) {
+          alert("El valor introducido " + entrada + " no es un numero");
+        } else {
+          // Se ejecuta sólo si la entrada pudo ser convertida a un número
+          contador++;
+          suma = suma + numero;
+          media = suma / contador;
+        }
+        // Confirmar si el usuario desea seguir ingresando datos. Confirm retorna true (OK) o false (Cancel)
+        if (confirm("¿Desea seguir ingresando datos?")) {
+        } else break;
+      } while (entrada !== null);
+      // Si no ingresó ningún dato
+      if (entrada === null) {
+        document.write("No se ingresaron datos, el programa finalizó");
+      } else {
+        document.write("La suma de los números es: " + suma + "<br>");
+        document.write(
+          "La media de los números introducidos son: " + media.toFixed(2)
+        );
+      }
+
+      // OBTENER URL DEL VIDEO CLICKEADO
+      /* function addclik() {
+        let videos = document.querySelectorAll(
+          ".large-media-item-thumbnail-container"
+        );
+        videos.forEach((item) =>
+          item.addEventListener("click", function () {
+            hizoclick(video.href);
+          })
+        );
+      }
+
+      function hizoclick(url) {
+        console.log(url);
+      } */
+    </script>
+  </body>
+</html>

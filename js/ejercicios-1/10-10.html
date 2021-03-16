@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*  27) Programa una clase llamada Pelicula. La clase recibirá un objeto al momento de instanciarse con los siguentes datos: id de la película en IMDB, titulo, director, año de estreno, país o países de origen, géneros y calificación en IMBD.
+      - Todos los datos del objeto son obligatorios.
+      - Valida que el id IMDB tenga 9 caracteres, los primeros 2 sean letras y los 7 restantes números. - Valida que el título no rebase los 100 caracteres.
+      - Valida que el director no rebase los 50 caracteres.
+      - Valida que el año de estreno sea un número entero de 4 dígitos.
+      - Valida que el país o paises sea introducidos en forma de arreglo.
+      - Valida que los géneros sean introducidos en forma de arreglo.
+      - Valida que los géneros introducidos esten dentro de los géneros aceptados*.
+      - Crea un método estático que devuelva los géneros aceptados*.
+      - Valida que la calificación sea un número entre 0 y 10 pudiendo ser decimal de una posición.
+      - Crea un método que devuelva toda la ficha técnica de la película.
+      - Apartir de un arreglo con la información de 3 películas genera 3 instancias de la clase de forma automatizada e imprime la ficha técnica de cada película.
+      * Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery,News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western. */
+      class Pelicula {
+        constructor({
+          id,
+          titulo,
+          director,
+          estreno,
+          pais,
+          generos,
+          calificacion,
+        }) {
+          this.id = id;
+          this.titulo = titulo;
+          this.director = director;
+          this.estreno = estreno;
+          this.pais = pais;
+          this.generos = generos;
+          this.calificacion = calificacion;
+          this.validarIMDB(id);
+          this.validarTitulo(titulo);
+          this.validarDirector(director);
+          this.validarEstreno(estreno);
+          this.validarPais(pais);
+          this.validarGeneros(generos);
+          this.validarCalificacion(calificacion);
+        }
+        static get listaGeneros() {
+          return [
+            "Action",
+            "Adult",
+            "Adventure",
+            "Animation",
+            "Biography",
+            "Comedy",
+            "Crime",
+            "Documentary",
+            "Drama",
+            "Family",
+            "Fantasy",
+            "Film Noir",
+            "Game-Show",
+            "History",
+            "Horror",
+            "Musical",
+            "Music",
+            "Mystery",
+            "News",
+            "Reality-TV",
+            "Romance",
+            "Sci-Fi",
+            "Short",
+            "Sport",
+            "Talk-Show",
+            "Thriller",
+            "War",
+            "Western",
+          ];
+        }
+        static generosAceptados() {
+          return console.info(
+            `Los géneros aceptados son: ${Pelicula.listaGeneros.join(", ")}`
+          );
+        }
+        /* validar cadenas */
+        validarCadena(propiedad, valor) {
+          if (!valor) return console.warn(`${propiedad} "${valor}" está vacio`);
+          if (typeof valor !== "string")
+            return console.error(
+              `${propiedad} "${valor}" ingresado. No es una cadena de texto`
+            );
+          return true;
+        }
+        /* validar longitud */
+        validarLongitudCadena(propiedad, valor, longitud) {
+          if (valor.length > longitud)
+            return console.error(
+              `${propiedad} "${valor}" excede el número de caracteres permitidos (${longitud})`
+            );
+          return true;
+        }
+        /* validar numero */
+        validarNumero(propiedad, valor) {
+          if (!valor) return console.warn(`${propiedad} "${valor}" está vacio`);
+          if (typeof valor !== "number")
+            return console.error(
+              `${propiedad} "${valor}" ingresado. No es un número`
+            );
+          return true;
+        }
+        /* validar array */
+        validarArray(propiedad, valor) {
+          if (!valor) return console.warn(`${propiedad} "${valor}" está vacio`);
+          if (!(valor instanceof Array))
+            return console.error(
+              `${propiedad} "${valor}" ingresado. No es un array`
+            );
+          if (valor.length === 0)
+            return console.error(`${propiedad} "${valor}" no tiene datos`);
+          for (const iterator of valor) {
+            if (typeof iterator !== "string")
+              return console.error(
+                `El valor "${iterator}" ingresado. No es una cadena de texto`
+              );
+          }
+          return true;
+        }
+        /* Valida que el id IMDB tenga 9 caracteres, los primeros 2 sean letras y los 7 restantes números. */
+        validarIMDB(id) {
+          if (this.validarCadena("IMDB", id)) {
+            if (!/^([a-z]){2}([0-9]){7}$/.test(id)) {
+              return console.error(
+                `IMDB id "${id}" no es válido, debe tener 9 caracteres, los 2 primeros letras minúsculas y los 7 restantes números`
+              );
+            }
+          }
+        }
+        /* Valida que el título no rebase los 100 caracteres. */
+        validarTitulo(titulo) {
+          if (this.validarCadena("Título", titulo)) {
+            this.validarLongitudCadena("Título", titulo, 100);
+          }
+        }
+        /* Valida que el director no rebase los 50 caracteres. */
+        validarDirector(director) {
+          if (this.validarCadena("Director", director)) {
+            this.validarLongitudCadena("Director", director, 50);
+          }
+        }
+        /* Valida que el año de estreno sea un número entero de 4 dígitos. */
+        validarEstreno(estreno) {
+          if (this.validarNumero("Año de estreno", estreno)) {
+            if (!/^([0-9]{4})$/.test(estreno)) {
+              return console.error(
+                `Año de estreno "${estreno}" no es válido, el año de estreno sea un número entero de 4 dígitos`
+              );
+            }
+          }
+        }
+        /* Valida que el país o paises sea introducidos en forma de arreglo */
+        validarPais(pais) {
+          this.validarArray("Pais", pais);
+        }
+        /* Valida que los géneros introducidos esten dentro de los géneros aceptados */
+        validarGeneros(generos) {
+          if (this.validarArray("Géneros", generos)) {
+            for (const genero of generos) {
+              if (!Pelicula.listaGeneros.includes(genero)) {
+                console.error(`Género(s) incorrectos "${generos.join(", ")}"`);
+                Pelicula.generosAceptados();
+              }
+            }
+          }
+        }
+        /* Valida que la calificación sea un número entre 0 y 10 pudiendo ser decimal de una posición */
+        validarCalificacion(calificacion) {
+          if (this.validarNumero("Calificación", calificacion)) {
+            return calificacion < 0 || calificacion > 10
+              ? console.error(
+                  `La calificación debe estar en un rango entre 0 y 10`
+                )
+              : (this.calificacion = calificacion.toFixed(1));
+          }
+        }
+
+        /* Crea un método que devuelva toda la ficha técnica de la película */
+        obtenerFichaTecnica() {
+          console.info(
+            `Ficha técnica: \nTítulo: "${this.titulo}"\nDirector: "${
+              this.director
+            }"\nAño: "${this.estreno}"\nPaís: "${this.pais.join(
+              " - "
+            )}"\nGéneros: "${this.generos.join(", ")}"\nCalificación: "${
+              this.calificacion
+            }"\nIMDB Id: "${this.id}"`
+          );
+        }
+      }
+      /*  const pelicula = new Pelicula({
+        id: "pp1234567",
+        titulo: "Proyecto X",
+        director: "Wilson Putul",
+        estreno: 1993,
+        pais: ["Guatemala", "Italy"],
+        generos: ["Action", "Comedy"],
+        calificacion: 2.039,
+      });
+      pelicula.obtenerFichaTecnica(); */
+      const misPelis = [
+        {
+          id: "pp1232267",
+          titulo: "Proyecto X",
+          director: "Wilson Tiul",
+          estreno: 1993,
+          pais: ["Guatemala", "Italy"],
+          generos: ["Action", "Comedy"],
+          calificacion: 2.039,
+        },
+        {
+          id: "pp1235667",
+          titulo: "El joker",
+          director: "Wilson Putul",
+          estreno: 1993,
+          pais: ["Guatemala"],
+          generos: ["Action"],
+          calificacion: 9.9,
+        },
+        {
+          id: "pp1223467",
+          titulo: "En busca de la felicidad",
+          director: "Wilson Isaias",
+          estreno: 1993,
+          pais: ["USA"],
+          generos: ["Action", "Comedy"],
+          calificacion: 8,
+        },
+      ];
+      /* Apartir de un arreglo con la información de 3 películas genera 3 instancias de la clase de forma automatizada e imprime la ficha técnica de cada película. */
+      misPelis.forEach((el) => new Pelicula(el).obtenerFichaTecnica());
+    </script>
+  </body>
+</html>
