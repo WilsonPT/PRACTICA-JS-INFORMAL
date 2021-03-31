@@ -9,58 +9,131 @@
   <body>
     <script>
       // MEDIA ARITMETICA
-      let suma = 0;
-      let media = 0;
-      let contador = 0;
-      let entrada = null;
-      do {
-        entrada = prompt(
-          "Introduce un número, pulse Cancelar si no quiere seguir: "
-        );
-        // Salir del ciclo en el caso de que se de click en Cancelar
-        if (entrada === null) break;
-        // Convertir a Number
-        let numero = parseFloat(entrada);
-        // Puede ver en consola el valor de numero
-        console.log(numero);
-        // True si la conversión no fue posible
-        if (isNaN(numero)) {
-          alert("El valor introducido " + entrada + " no es un numero");
-        } else {
-          // Se ejecuta sólo si la entrada pudo ser convertida a un número
-          contador++;
-          suma = suma + numero;
-          media = suma / contador;
-        }
-        // Confirmar si el usuario desea seguir ingresando datos. Confirm retorna true (OK) o false (Cancel)
-        if (confirm("¿Desea seguir ingresando datos?")) {
-        } else break;
-      } while (entrada !== null);
-      // Si no ingresó ningún dato
-      if (entrada === null) {
-        document.write("No se ingresaron datos, el programa finalizó");
-      } else {
-        document.write("La suma de los números es: " + suma + "<br>");
-        document.write(
-          "La media de los números introducidos son: " + media.toFixed(2)
-        );
-      }
+      /* let suma = 0;
+            let media = 0;
+            let contador = 0;
+            let entrada = null;
+            do {
+              entrada = prompt(
+                "Introduce un número, pulse Cancelar si no quiere seguir: "
+              );
+              // Salir del ciclo en el caso de que se de click en Cancelar
+              if (entrada === null) break;
+              // Convertir a Number
+              let numero = parseFloat(entrada);
+              // Puede ver en consola el valor de numero
+              console.log(numero);
+              // True si la conversión no fue posible
+              if (isNaN(numero)) {
+                alert("El valor introducido " + entrada + " no es un numero");
+              } else {
+                // Se ejecuta sólo si la entrada pudo ser convertida a un número
+                contador++;
+                suma = suma + numero;
+                media = suma / contador;
+              }
+              // Confirmar si el usuario desea seguir ingresando datos. Confirm retorna true (OK) o false (Cancel)
+              if (confirm("¿Desea seguir ingresando datos?")) {
+              } else break;
+            } while (entrada !== null);
+            // Si no ingresó ningún dato
+            if (entrada === null) {
+              document.write("No se ingresaron datos, el programa finalizó");
+            } else {
+              document.write("La suma de los números es: " + suma + "<br>");
+              document.write(
+                "La media de los números introducidos son: " + media.toFixed(2)
+              );
+            } */
 
       // OBTENER URL DEL VIDEO CLICKEADO
       /* function addclik() {
-        let videos = document.querySelectorAll(
-          ".large-media-item-thumbnail-container"
-        );
-        videos.forEach((item) =>
-          item.addEventListener("click", function () {
-            hizoclick(video.href);
-          })
-        );
-      }
+              let videos = document.querySelectorAll(
+                ".large-media-item-thumbnail-container"
+              );
+              videos.forEach((item) =>
+                item.addEventListener("click", function () {
+                  hizoclick(video.href);
+                })
+              );
+            }
 
-      function hizoclick(url) {
-        console.log(url);
-      } */
+            function hizoclick(url) {
+              console.log(url);
+            } */
+      /* function Notas(nota1, nota2) {
+        if (typeof nota1 !== "number" || typeof nota2 !== "number")
+          return "El dato " + nota1 + " o " + nota2 + " no es un número";
+        if (nota1 > nota2) console.log("La nota " + nota1 + " es la mayor");
+        else if (nota1 < nota2) console.log("Lanota " + nota2 + " es la mayor");
+        else console.log("La notas son iguales: " + nota1);
+        return "El promedio es: " + ((nota1 + nota2) / 2).toFixed(2);
+      }
+      console.log(Notas(5, 5)); */
     </script>
   </body>
 </html>
+<!-- 
+ <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Lámparas</title>
+    <style>
+      .imagen {
+        width: 150px;
+        height: auto;
+      }
+      h2 {
+        background: steelblue;
+      }
+    </style>
+  </head>
+  <body>
+    <template id="producto">
+      <h2></h2>
+      <img class="imagen" />
+      <div id="espec"></div>
+    </template>
+    <script>
+      (() => {
+        const xhr = new XMLHttpRequest(),
+          $xhr = document.getElementById("xhr"),
+          $fragment = document.createDocumentFragment();
+
+        xhr.addEventListener("readystatechange", (e) => {
+          if (xhr.readyState !== 4) return;
+          if (xhr.status >= 200 && xhr.status < 300) {
+            console.log("EXITO");
+            let json = JSON.parse(xhr.responseText);
+            $template = document.getElementById("producto").content;
+            json.forEach(function (el, indice) {
+              $template.querySelector("img").setAttribute("src", el.img);
+              $template
+                .querySelector("img")
+                .setAttribute("alt", "FOTO LAMPARA");
+              $template.querySelector("h2").textContent = el.producto;
+              //agregar al div
+              el.especificaciones.forEach((item) => {
+                $template.querySelector("#espec").innerHTML += `<p>${item}</p>`;
+              });
+              let $clone = document.importNode($template, true);
+              $fragment.appendChild($clone);
+              //limpiar despues de agregar para que no se repitan en la siguiente iteración
+              $template.querySelector("#espec").textContent = null;
+            });
+
+            document.querySelector("body").appendChild($fragment);
+          } else {
+            console.log("ERROR");
+            let message = xhr.statusText || "Ocurrió un error";
+            $xhr.innerHTML = `Error ${xhr.status}: ${message}`;
+          }
+        });
+        xhr.open("GET", "js/productos.json");
+        xhr.send();
+      })();
+    </script>
+  </body>
+</html>
+ -->

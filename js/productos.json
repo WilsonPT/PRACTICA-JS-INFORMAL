@@ -1,0 +1,34 @@
+[{
+    "id":"0001",
+    "producto":"NAKAMURA HB02-100",
+    "denominacion":"LUMINARIA HIGH BAY (UFO) ALTA EFICIENCIA",
+    "fecha_cierre":"15/03/2021",
+    "fecha_arribo":"13/06/2021",
+    "embarque":"Luminaria HIGH BAY (UFO) MAY-2020",
+    "precio":"FOB 33,950",
+    "especificaciones":["Potencia: 100 W","Dimmable: NO","Tensión: 100~277 VCA","Eficiencia: 150/160 Lm/W"],
+    "img":"/imagenes/201922150722 - Cengo-ZHNSA 100-150-200-240.png"
+},
+{
+    "id":"0002",
+    "producto":"NAKAMURA HB01-100",
+    "denominacion":"LUMINARIA HIGH BAY (UFO) ANTIDESLUMBRAMIENTO",
+    "fecha_cierre":"15/03/2021",
+    "fecha_arribo":"13/06/2021",
+    "embarque":"Luminaria HIGH BAY (UFO) MAY-2020",
+    "precio":"FOB 37,850",
+    "especificaciones":["Potencia: 40 W","Dimmable: SI","Tensión: 100~277 VCA"],
+    "img":"/imagenes/201915150715 - Cengo-ZHN.png"
+},
+{
+    "id":"0003",
+    "producto":"NAKAMURA NK-F-A60-6-E",
+    "denominacion":"LAMPARA FILAMENTO A60 6W",
+    "fecha_cierre":"31/03/2021",
+    "fecha_arribo":"29/06/2021",
+    "embarque":"Lámparas JUN-2020",
+    "precio":"FOB 0,830",
+    "especificaciones":["Potencia: 50 W","Dimmable: NO","Tensión: 100~298 VCA","Frecuencia: 60 Hz"],
+    "img":"/imagenes/201925140725 - Enshine-Filament A 60 8w.png"
+}
+]

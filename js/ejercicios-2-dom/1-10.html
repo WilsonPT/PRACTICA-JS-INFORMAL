@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="static/hamburgers/dist/hamburgers.css" />
+    <link rel="stylesheet" href="static/myCSS/style.css" />
+  </head>
+  <body>
+    <div class="header"><h1>Ejercicios del DOM</h1></div>
+    <section id="section1" class="section1"><h2>Sección 1</h2></section>
+    <section id="section2" class="section2"><h2>Sección 2</h2></section>
+    <section id="section3" class="section3"><h2>Sección 3</h2></section>
+    <section id="section4" class="section4"><h2>Sección 4</h2></section>
+    <section id="section5" class="section5"><h2>Sección 5</h2></section>
+    <div id="menu-dark" class="hide">
+      <div><a href="#section1">Sección 1</a></div>
+      <div><a href="#section2">Sección 2</a></div>
+      <div><a href="#section3">Sección 3</a></div>
+      <div><a href="#section4">Sección 4</a></div>
+      <div><a href="#section5">Sección 5</a></div>
+    </div>
+    <br />
+    <button class="hamburger hamburger--emphatic btn-menu" type="button">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+    <br />
+    <script src="static/js/index_dom.js" type="module"></script>
+    <script>
+      /**
+       * forEach implementation for Objects/NodeLists/Arrays, automatic type loops and context options
+       *
+       * @private
+       * @author Todd Motto
+       * @link https://github.com/toddmotto/foreach
+       * @param {Array|Object|NodeList} collection - Collection of items to iterate, could be an Array, Object or NodeList
+       * @callback requestCallback      callback   - Callback function for each iteration.
+       * @param {Array|Object|NodeList} scope=null - Object/NodeList/Array that forEach is iterating over, to use as the this value when executing callback.
+       * @returns {}
+       */
+      var forEach = function (t, o, r) {
+        if ("[object Object]" === Object.prototype.toString.call(t))
+          for (var c in t)
+            Object.prototype.hasOwnProperty.call(t, c) && o.call(r, t[c], c, t);
+        else for (var e = 0, l = t.length; l > e; e++) o.call(r, t[e], e, t);
+      };
+
+      var hamburgers = document.querySelectorAll(".hamburger");
+      if (hamburgers.length > 0) {
+        forEach(hamburgers, function (hamburger) {
+          hamburger.addEventListener(
+            "click",
+            function () {
+              this.classList.toggle("is-active");
+            },
+            false
+          );
+        });
+      }
+    </script>
+  </body>
+</html>

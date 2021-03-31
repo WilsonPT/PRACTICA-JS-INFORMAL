@@ -336,5 +336,203 @@ $newCard2.classList.add("card"); */
 // $cards.before($newCard);
 // $cards.after($newCard2);
 
+// EVENTOS - EVENTS
+// https://developer.mozilla.org/es/docs/Web/Events
+// Manejadores de eventos - cuando una funcion se convierte en un manejador de eventos, podremos acceder a un nuevo objeto Event
+/* function holaMundo() {
+  alert("Hola mundo!");
+  console.log(event);
+}
+const $eventoSemantico = document.getElementById("evento-semantico");
+$eventoSemantico.onclick = holaMundo;
+$eventoSemantico.onclick = function (e) {
+  console.log("hola mundo manejador de eventos semántico");
+  console.log(e);
+  console.log(event);
+}; */
 
-// EVENTOS
+// manejador multiple
+/* const $eventoMultiple = document.getElementById("evento-multiple");
+$eventoMultiple.addEventListener("click", (e) => {
+  alert("Hola mundo manejador de eventos multiples");
+  console.log(e);
+  console.log(e.type);
+  console.log(e.target);
+  console.log(event);
+});
+$eventoMultiple.addEventListener("click", holaMundo); */
+// la funcion manejadora no puede resivir parametros, unicamente Event
+// Eventos con parámetros y remover eventos
+/* function saludar(nombre = "Desconocid@") {
+  alert(`Hola ${nombre}`);
+} */
+// la funcion saludar es la manejadora y por lo tanto el parametro nombre va tomar el valor de Event y no "Desconocid@"
+/* $eventoMultiple.addEventListener("click", saludar); */
+// la arrow function es la manejadora y por lo tanto el parametro nombre va tomar el valor de "Desconocid@
+/* $eventoMultiple.addEventListener("click", () => {
+  saludar();
+  saludar("Wilson");
+}); */
+//remover evento
+/* const removerDblClick = (e) => {
+  alert(`Removiendo el evento ${e.type}`);
+  console.log(e);
+  $eventoRemover.removeEventListener("dblclick", removerDblClick);
+};
+const $eventoRemover = document.getElementById("evento-remover");
+$eventoRemover.addEventListener("dblclick", removerDblClick);
+ */
+
+//DOM: Flujo de Eventos (Burbuja y Captura)
+
+/* function flujoEventos(e) {
+  console.log(
+    `Hola te saluda ${this.className}, el click lo originó ${e.target.className}`
+  );
+  e.stopPropagation();
+}
+
+const $divsEventos = document.querySelectorAll(".eventos-flujo div");
+console.log($divsEventos); */
+// burbuja: del mas interno al mas externo
+// $divsEventos.forEach((div) => div.addEventListener("click", flujoEventos));
+// $divsEventos.forEach((div) => div.addEventListener("click", flujoEventos, false));
+/* $divsEventos.forEach((div) =>
+  div.addEventListener("click", flujoEventos, {
+    capture: false,
+  })
+); */
+// captura: del mas externo al mas interno
+/* $divsEventos.forEach((div) =>
+  div.addEventListener("click", flujoEventos, true)
+); */
+/* $divsEventos.forEach((div) =>
+  div.addEventListener("click", flujoEventos, {
+    capture: true,
+  })
+); */
+// ejecutar una sola vez
+/* $divsEventos.forEach((div) =>
+  div.addEventListener("click", flujoEventos, {
+    capture: false,
+    once: true,
+  })
+); */
+
+//DOM: stopPropagation & preventDefault
+// $divsEventos.forEach((div) => div.addEventListener("click", flujoEventos));
+// deterpropagacion con e.stopPropagation()
+// evitar el comportamiento por defaul del evento con e.preventDefault()
+/* const $link = document.querySelector(".eventos-flujo a");
+$link.addEventListener("click", (e) => {
+  alert("hola papu que crack sos, segui asi o mejor papu");
+  e.preventDefault();
+  e.stopPropagation();
+}); */
+
+//DOM: Delegación de Eventos
+/* document.addEventListener("click", (e) => {
+  console.log("Click en ", e.target);
+  if (e.target.matches(".eventos-flujo div")) {
+    flujoEventos(e);
+  }
+  if (e.target.matches(".eventos-flujo a")) {
+    alert(`Hola crack manitas el hijo de wputul`);
+    e.preventDefault();
+  }
+});
+ */
+
+//BOM: Propiedades y Eventos
+/* window.addEventListener("resize", (e) => {
+  console.clear();
+  console.log("-------- Evento Resize ---------");
+  console.log(window.innerWidth);
+  console.log(window.innerHeight);
+  console.log(window.outerWidth);
+  console.log(window.outerHeight);
+  console.log(e);
+});
+window.addEventListener("scroll", (e) => {
+  console.clear();
+  console.log("-------- Evento Scroll ---------");
+  console.log(window.scrollX);
+  console.log(window.scrollY);
+  console.log(e);
+}); */
+/* window.addEventListener("load", (e) => {
+  console.log("-------- Evento Load ---------");
+  console.log(window.screenX);
+  console.log(window.screenY);
+  console.log(e);
+});
+document.addEventListener("DOMContentLoaded", (e) => {
+  console.log("-------- Evento DOMContentLoaded ---------");
+  console.log(window.screenX);
+  console.log(window.screenY);
+  console.log(e);
+});
+ */
+
+//BOM: Métodos
+/* window.alert("Alertaaa");
+window.confirm("confirme"); //retorna true (OK) o false (CANCEL)
+window.prompt("Ingrese algo:"); */
+/* const $abrirVentana = document.getElementById("abrir-ventana"),
+  $cerrarVentana = document.getElementById("cerrar-ventana"),
+  $imprimirVentana = document.getElementById("imprimir-ventana");
+
+let ventana; */
+// abrir ventana
+/* $abrirVentana.addEventListener("click", (e) => {
+  ventana = window.open("https://es.stackoverflow.com/users/99941/wilsonpt");
+}); */
+// cerrar ventana
+/* $cerrarVentana.addEventListener("click", (e) => {
+  ventana.close(ventana);
+}); */
+// imprimir
+/* $imprimirVentana.addEventListener("click", (e) => {
+  window.print();
+});
+ */
+
+//BOM: Objetos: URL, Historial y Navegador
+//location - url
+/* console.log("**** Objeto URL (location) ****");
+console.log(location);
+console.log(location.origin);
+console.log(location.protocol);
+console.log(location.host);
+console.log(location.hostname);
+console.log(location.href);
+console.log(location.port);
+console.log(location.pathname);
+ */ // almacena lo que se pasa como #ejemplo en la url (un ancla)
+//console.log(location.hash);
+// almacena lo que se pasa como parametro
+// console.log(location.search);
+//location.reload();
+
+//history
+/* console.log("**** Objeto Historial (history) ****");
+console.log(history);
+console.log(history.length); */
+//navegar entre paginas
+//console.log(history.back(1));
+//console.log(history.forward(2));
+// ir n páginas hacia adelante (+n) o ir n páginas hacia atras (-n)
+/* console.log(history.go(1)); */
+// navigator
+/* console.log("**** Objeto Navegador (navigator) ****");
+console.log(navigator);
+console.log(navigator.connection);
+console.log(navigator.geolocation);
+console.log(navigator.mediaDevices);
+console.log(navigator.mimeTypes);
+console.log(navigator.onLine);
+console.log(navigator.serviceWorker);
+console.log(navigator.storage);
+console.log(navigator.usb);
+console.log(navigator.userAgent);
+ */
